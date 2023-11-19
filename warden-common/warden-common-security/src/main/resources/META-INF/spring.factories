@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.microwarp.warden.cloud.common.security.service.RedisTokenService,\
+  com.microwarp.warden.cloud.common.security.service.CaptchaService,\
+  com.microwarp.warden.cloud.common.security.config.WardenFeignConfig

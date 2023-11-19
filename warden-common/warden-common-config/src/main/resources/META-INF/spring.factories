@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.microwarp.warden.cloud.common.config.response.GlobalAdviceController,\
+  com.microwarp.warden.cloud.common.config.response.GlobalExceptionHandler,\
+  com.microwarp.warden.cloud.common.config.SpringConfig,\
+  com.microwarp.warden.cloud.common.config.WardenSecurityConfig,\
+  com.microwarp.warden.cloud.common.config.FilterConfig

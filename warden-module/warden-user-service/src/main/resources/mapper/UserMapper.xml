@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microwarp.warden.cloud.service.user.mapper.UserMapper">
+    <sql id="base_column">
+        user_id as userId,permission_value as permissionValue
+    </sql>
+    <select id="findByUserId" resultType="java.lang.String">
+        SELECT permission_value
+        FROM wd_user_permission
+        WHERE user_id = #{userId}
+    </select>
+    <delete id="deleteByUserId">
+        DELETE FROM wd_user_permission WHERE user_id = #{userId}
+    </delete>
+    <delete id="deleteByPermissionValue">
+        DELETE FROM wd_user_permission WHERE permission_value = #{permissionValue}
+    </delete>
+    <insert id="insertUserPermission">
+        INSERT INTO wd_sys_role_user(user_id, permissionValue) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userId},#{item.permissionValue})
+        </foreach>
+    </insert>
+</mapper>

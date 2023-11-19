@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.microwarp.warden.cloud.common.redis.config.RedisConfig,\
+  com.microwarp.warden.cloud.common.redis.DataCacheableService

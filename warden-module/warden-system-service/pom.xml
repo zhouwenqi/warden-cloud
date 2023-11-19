@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>warden-module</artifactId>
+        <groupId>com.microwarp</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>warden-system-service</artifactId>
+    <description>系统后台服务</description>
+    <dependencies>
+        <!-- SpringCloud Alibaba Nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- SpringCloud Alibaba Nacos Config -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- Warden facade : system-api -->
+        <dependency>
+            <groupId>com.microwarp</groupId>
+            <artifactId>warden-system-api</artifactId>
+        </dependency>
+        <!-- Warden facade : user-api -->
+        <dependency>
+            <groupId>com.microwarp</groupId>
+            <artifactId>warden-user-api</artifactId>
+        </dependency>
+        <!-- Warden api : order -->
+        <dependency>
+            <groupId>com.microwarp</groupId>
+            <artifactId>warden-order-api</artifactId>
+        </dependency>
+        <!-- Warden common : security -->
+        <dependency>
+            <groupId>com.microwarp</groupId>
+            <artifactId>warden-common-security</artifactId>
+        </dependency>
+        <!-- Warden common : database -->
+        <dependency>
+            <groupId>com.microwarp</groupId>
+            <artifactId>warden-common-database</artifactId>
+        </dependency>
+        <!-- Warden common : config -->
+        <dependency>
+            <groupId>com.microwarp</groupId>
+            <artifactId>warden-common-config</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <source>8</source>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

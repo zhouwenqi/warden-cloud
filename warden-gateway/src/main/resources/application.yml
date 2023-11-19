@@ -1,0 +1,48 @@
+nacos:
+  server-addr: '192.168.1.11:8848'
+  namespace: '6de4ab94-fde3-4ec6-8f0f-833f139b93ce'
+server:
+  port: 8700
+spring:
+  application:
+    name: warden-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+      config:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+        file-extension: yml
+    gateway:
+      routes:
+        - id: warden-admin
+          uri: lb://warden-system-service
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1
+        - id: warden-app-order
+          uri: lb://warden-order-serivce
+          predicates:
+            - Path=/app/order/**
+            - Path=/app/orderPayment/**
+            - Path=/app/product/**
+          filters:
+            - StripPrefix=1
+        - id: warden-app-user
+          uri: lb://warden-order-serivce
+          predicates:
+            - Path=/app/user/**
+          filters:
+            - StripPrefix=1
+  config:
+    import:
+      - optional:nacos:WardenGlobalConfig.yml
+  redis:
+    host: ${warden.redis.host}
+    port: ${warden.redis.port}
+  jackson:
+    time-zone: 'GMT+8'
+    date-format: 'yyyy-MM-dd HH:mm:ss'

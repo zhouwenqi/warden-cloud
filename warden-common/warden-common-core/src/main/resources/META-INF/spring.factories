@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.microwarp.warden.cloud.common.core.security.AesTokenFactory,\
+  com.microwarp.warden.cloud.common.core.security.RsaTokenFactory,\
+  com.microwarp.warden.cloud.common.core.util.SpringContextUtil

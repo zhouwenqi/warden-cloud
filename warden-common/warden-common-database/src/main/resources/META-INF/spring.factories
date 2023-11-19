@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.microwarp.warden.cloud.common.database.config.MybatisPlusConfig,\
+  com.microwarp.warden.cloud.common.database.config.MetaObjectFillConfig
