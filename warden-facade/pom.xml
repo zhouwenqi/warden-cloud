@@ -14,7 +14,6 @@
     <modules>
         <module>warden-system-api</module>
         <module>warden-user-api</module>
-        <module>warden-push-api</module>
         <module>warden-order-api</module>
     </modules>
 </project>

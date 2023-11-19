@@ -17,6 +17,4 @@
             <artifactId>warden-common-core</artifactId>
         </dependency>
     </dependencies>
-
-
 </project>

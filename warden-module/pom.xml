@@ -14,8 +14,6 @@
     <modules>
         <module>warden-system-service</module>
         <module>warden-user-service</module>
-        <module>warden-passport-service</module>
-        <module>warden-push-service</module>
         <module>warden-order-service</module>
     </modules>
 </project>
