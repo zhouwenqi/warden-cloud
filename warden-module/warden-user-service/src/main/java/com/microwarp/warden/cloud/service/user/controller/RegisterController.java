@@ -3,10 +3,11 @@ package com.microwarp.warden.cloud.service.user.controller;
 import com.microwarp.warden.cloud.common.core.exception.WardenParamterErrorException;
 import com.microwarp.warden.cloud.common.core.model.ResultModel;
 import com.microwarp.warden.cloud.common.security.service.CaptchaService;
+import com.microwarp.warden.cloud.facade.user.domain.dto.CreateUserDTO;
 import com.microwarp.warden.cloud.facade.user.domain.dto.UserDTO;
 import com.microwarp.warden.cloud.service.user.config.WardenUserConfig;
 import com.microwarp.warden.cloud.service.user.domain.convert.UserMapstruct;
-import com.microwarp.warden.cloud.service.user.domain.vo.UserRegisterRequest;
+import com.microwarp.warden.cloud.service.user.domain.vo.RegisterUserRequest;
 import com.microwarp.warden.cloud.service.user.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class RegisterController {
      * @return
      */
     @PostMapping("/register")
-    public ResultModel register(@RequestBody @Validated UserRegisterRequest registerRequest){
+    public ResultModel register(@RequestBody @Validated RegisterUserRequest registerRequest){
         // 图形验证码校验
         if(wardenUserConfig.getEnableCaptcha()){
             if(StringUtils.isBlank(registerRequest.getCaptchaCode())){
@@ -53,9 +54,9 @@ public class RegisterController {
             }
         }
 
-        UserDTO userDTO = UserMapstruct.Instance.userRegisterRequestToSysUserDTO(registerRequest);
-        userDTO.setPwd(bCryptPasswordEncoder.encode(registerRequest.getPwd()));
-        UserDTO newUser = userService.create(userDTO);
+        CreateUserDTO createUserDTO = UserMapstruct.Instance.registerUserRequestToCreateUserDTO(registerRequest);
+        createUserDTO.setPwd(bCryptPasswordEncoder.encode(registerRequest.getPwd()));
+        UserDTO newUser = userService.create(createUserDTO);
         ResultModel resultModel = ResultModel.success();
         resultModel.addData("user",UserMapstruct.Instance.userDtoToUserVo(newUser));
         return resultModel;

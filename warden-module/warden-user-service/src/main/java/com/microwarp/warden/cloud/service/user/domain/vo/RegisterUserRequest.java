@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 /**
  * vo - 注册 - request
  */
-public class UserRegisterRequest {
+public class RegisterUserRequest {
     /** 帐号 */
     @NotBlank(message = "帐号不能为空")
     @Pattern(regexp = "^[a-zA-Z0-9_-]{6,20}",message = "帐号只能是a-zA-Z0-9_-等6-20位字符")

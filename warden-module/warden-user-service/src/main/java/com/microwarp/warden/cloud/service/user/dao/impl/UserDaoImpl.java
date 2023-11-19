@@ -8,6 +8,7 @@ import com.microwarp.warden.cloud.service.user.dao.UserDao;
 import com.microwarp.warden.cloud.service.user.domain.convert.UserMapstruct;
 import com.microwarp.warden.cloud.service.user.domain.entity.User;
 import com.microwarp.warden.cloud.service.user.mapper.UserMapper;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -57,30 +58,28 @@ public class UserDaoImpl extends BaseDaoImpl<UserMapper,User> implements UserDao
     }
 
     /**
-     * 创建用户信息
-     * @param userDTO 用户信息
-     * @return 最新用户信息
+     * 删除用户信息
+     * @param userId 用户id
      */
-    @Override
-    public UserDTO create(UserDTO userDTO){
-        User user = UserMapstruct.Instance.userDtoToUser(userDTO);
-        baseMapper.insert(user);
-        return findById(user.getId());
+    public void delete(Long userId){
+        baseMapper.deleteByUserId(userId);
+        baseMapper.deleteById(userId);
     }
-
 
 
     /**
      * 更新用户权限
-     * @param userDTO 用户信息
+     * @param permissionValues 权限列表
+     * @param userId 用户id
      */
-    private void updateUserPermissions(UserDTO userDTO){
-        if(null != userDTO.getPermissionValues() && userDTO.getPermissionValues().size() > 0){
-            baseMapper.deleteByUserId(userDTO.getId());
+    @Override
+    public void updateUserPermissions(List<String> permissionValues, Long userId){
+        if(null != permissionValues && permissionValues.size() > 0){
+            baseMapper.deleteByUserId(userId);
             List<Map> list = new ArrayList<>();
-            userDTO.getPermissionValues().forEach(value->{
+            permissionValues.forEach(value->{
                 Map<String,Object> map = new HashMap<>();
-                map.put("userId",userDTO.getId());
+                map.put("userId",userId);
                 map.put("permissionValue",value);
                 list.add(map);
             });
