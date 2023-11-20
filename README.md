@@ -9,3 +9,14 @@ warden-cloud是一套基于spring-cloud的java开源脚手架，适合初创企�
 * 自主封装基于Redis的统一token凭证；
 * 集成常规业务链demo教程模块；
 * 持续增加落地主流业务模块；
+
+### 使用技术栈
+* Spring Cloud
+* Spring Gateway
+* Spring Security
+* Alibaba Spring Cloud
+* Nacos
+* Redis
+* Mysql
+* Sentinel
+* EasyExcel
