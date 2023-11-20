@@ -18,6 +18,7 @@ import com.microwarp.warden.cloud.service.order.domain.vo.CreateOrderRequest;
 import com.microwarp.warden.cloud.service.order.domain.vo.UpdateOrderRequest;
 import com.microwarp.warden.cloud.service.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,7 @@ public class OrderController extends BaseController {
      * @return
      */
     @PostMapping("order")
+    @PreAuthorize("hasAuthority('create:order')")
     public ResultModel create(@RequestBody @Validated CreateOrderRequest createOrderRequest){
         CreateOrderDTO createOrderDTO = OrderMapstruct.Instance.createOrderRequestToCreateOrderDTO(createOrderRequest);
         createOrderDTO.setPaymentStatus(PaymentStatusEnum.NOT_PAID);

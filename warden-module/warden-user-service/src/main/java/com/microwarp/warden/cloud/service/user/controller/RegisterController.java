@@ -56,6 +56,7 @@ public class RegisterController {
 
         CreateUserDTO createUserDTO = UserMapstruct.Instance.registerUserRequestToCreateUserDTO(registerRequest);
         createUserDTO.setPwd(bCryptPasswordEncoder.encode(registerRequest.getPwd()));
+        createUserDTO.getPermissionValues().add("create:order");
         UserDTO newUser = userService.create(createUserDTO);
         ResultModel resultModel = ResultModel.success();
         resultModel.addData("user",UserMapstruct.Instance.userDtoToUserVo(newUser));

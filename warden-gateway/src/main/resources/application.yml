@@ -37,6 +37,10 @@ spring:
             - Path=/app/user/**
           filters:
             - StripPrefix=1
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 192.168.1.11:8083
   config:
     import:
       - optional:nacos:WardenGlobalConfig.yml

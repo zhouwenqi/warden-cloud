@@ -45,7 +45,6 @@ public class FeignUserController implements IUserService{
     public void updatePermissions(@RequestBody UpdatePermissionsDTO updatePermissionsDTO){
         userService.updateUserPermissions(updatePermissionsDTO.getPermissionValues(),updatePermissionsDTO.getUserId());
     }
-
     /**
      * 分页查询用户信息
      * @param iSearchPageable 查询条件

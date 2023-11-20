@@ -5,10 +5,13 @@ import com.microwarp.warden.cloud.common.core.exception.WardenRequireParamterExc
 import com.microwarp.warden.cloud.common.core.model.ResultModel;
 import com.microwarp.warden.cloud.common.core.pageing.ResultPage;
 import com.microwarp.warden.cloud.common.core.pageing.SearchPageable;
+import com.microwarp.warden.cloud.facade.user.domain.dto.UpdatePermissionsDTO;
 import com.microwarp.warden.cloud.facade.user.domain.dto.UserDTO;
 import com.microwarp.warden.cloud.facade.user.domain.dto.UserSearchDTO;
 import com.microwarp.warden.cloud.facade.user.service.IUserService;
+import com.microwarp.warden.cloud.service.system.domain.vo.UpdateUserPermissionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -40,6 +43,19 @@ public class UserController extends BaseController {
         return resultModel;
     }
 
+    /**
+     * 修改用户权限
+     * @param updateUserPermissionRequest 权限信息
+     * @return
+     */
+    @PatchMapping("/user/permissions")
+    public ResultModel updatePermission(@RequestBody @Validated UpdateUserPermissionRequest updateUserPermissionRequest){
+        UpdatePermissionsDTO updatePermissionsDTO = new UpdatePermissionsDTO();
+        updatePermissionsDTO.setPermissionValues(updateUserPermissionRequest.getPermissionValues());
+        updatePermissionsDTO.setUserId(updateUserPermissionRequest.getUserId());
+        iUserService.updatePermissions(updatePermissionsDTO);
+        return ResultModel.success();
+    }
     /**
      * 删除用户
      * @param id 用户id
