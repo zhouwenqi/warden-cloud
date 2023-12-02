@@ -18,7 +18,6 @@ spring:
   config:
     import:
       - optional:nacos:WardenGlobalConfig.yml
-      - optional:nacos:UserServiceConfig.yml
   redis:
     host: ${warden.redis.host}
     port: ${warden.redis.port}
