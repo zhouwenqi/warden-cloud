@@ -72,6 +72,12 @@ public interface SysUserService extends BaseService<SysUser> {
     ResultPage<SysUserDTO> findPage(ISearchPageable<SysUserSearchDTO> iSearchPageable);
 
     /**
+     * 刷新用户密钥
+     * @param userId 用户id
+     * @return 新的密钥
+     */
+    String refreshSecretKey(Long userId);
+    /**
      * 删除系统用户
      * @param userId 用户id
      */

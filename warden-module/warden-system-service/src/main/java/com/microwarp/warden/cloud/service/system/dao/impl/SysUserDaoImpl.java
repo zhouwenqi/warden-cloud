@@ -2,6 +2,7 @@ package com.microwarp.warden.cloud.service.system.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.microwarp.warden.cloud.common.core.util.GoogleAuthUtil;
 import com.microwarp.warden.cloud.common.database.domain.BaseDaoImpl;
 import com.microwarp.warden.cloud.facade.system.domain.dto.SysUserDTO;
 import com.microwarp.warden.cloud.service.system.dao.SysUserDao;
@@ -52,6 +53,30 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUserMapper,SysUser> implement
         queryWrapper.eq("disabled",false);
         List<SysUser> list = baseMapper.selectList(queryWrapper);
         return null == list ? new ArrayList<>() : list;
+    }
+
+    /**
+     * 刷新用户密钥
+     * @param userId 用户id
+     * @return 新的密钥
+     */
+    @Override
+    public String refreshSecretKey(Long userId){
+        if(null == userId){
+            return null;
+        }
+        String key = GoogleAuthUtil.getSecretKey();
+        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("secret_key",key);
+        long count = baseMapper.selectCount(queryWrapper);
+        if(count > 0){
+            refreshSecretKey(userId);
+        }
+        SysUser sysUser = new SysUser();
+        sysUser.setId(userId);
+        sysUser.setSecretKey(key);
+        baseMapper.updateById(sysUser);
+        return  key;
     }
 
     /**

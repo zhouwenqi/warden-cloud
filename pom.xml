@@ -44,6 +44,7 @@
         <kaptcha.version>2.3.2</kaptcha.version>
         <caffeine.version>2.9.3</caffeine.version>
         <redisson.version>3.15.5</redisson.version>
+        <com.google.zxing-version>3.3.3</com.google.zxing-version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-codec.version>1.15</commons-codec.version>
         <commons-crypto.version>1.1.0</commons-crypto.version>
@@ -150,6 +151,16 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${org.mapstruct-processor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${com.google.zxing-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${com.google.zxing-version}</version>
             </dependency>
             <!-- warden cloud -->
             <dependency>

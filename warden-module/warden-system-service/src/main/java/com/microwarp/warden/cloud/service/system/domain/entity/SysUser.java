@@ -35,6 +35,8 @@ public class SysUser extends LogicEntity {
     private Long deptId;
     /** 岗位id */
     private Long postId;
+    /** 秘钥 */
+    private String secretKey;
     /** 关闭 */
     @TableField(fill = FieldFill.INSERT)
     private Boolean disabled;
@@ -125,6 +127,14 @@ public class SysUser extends LogicEntity {
 
     public void setPostId(Long postId) {
         this.postId = postId;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
     }
 
     public Boolean getDisabled() {

@@ -19,6 +19,12 @@ public interface SysLoginLogService extends BaseService<SysLoginLog> {
      */
     SysLoginLogDTO findById(Long id);
     /**
+     * 获取系统用户最后一条登录信息
+     * @param userId 用户id
+     * @return
+     */
+    SysLoginLogDTO findLastByUserId(Long userId);
+    /**
      * 添加登录日志信息
      * @param sysLoginLogDTO 日志信息
      */

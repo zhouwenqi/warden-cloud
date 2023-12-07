@@ -2,6 +2,7 @@ package com.microwarp.warden.cloud.service.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.microwarp.warden.cloud.common.core.enums.ActionStatusEnum;
 import com.microwarp.warden.cloud.common.core.pageing.ISearchPageable;
 import com.microwarp.warden.cloud.common.core.pageing.PageInfo;
 import com.microwarp.warden.cloud.common.core.pageing.ResultPage;
@@ -33,6 +34,20 @@ public class SysLoginLogServiceImpl extends BaseServiceImpl<SysLoginLog,SysLogin
         return this.dao.findById(id);
     }
 
+    /**
+     * 获取系统用户最后一条登录信息
+     * @param userId 用户id
+     * @return
+     */
+    public SysLoginLogDTO findLastByUserId(Long userId){
+        QueryWrapper<SysLoginLog> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
+        queryWrapper.eq("status", ActionStatusEnum.SUCCESS);
+        queryWrapper.orderByDesc("create_date");
+        queryWrapper.last("limit 1");
+        SysLoginLog sysLoginLog = this.dao.getOne(queryWrapper);
+        return null == sysLoginLog ? null : SysLoginLogMapstruct.Instance.sysLoginLogToSysLoginLogDTO(sysLoginLog);
+    }
     /**
      * 添加登录日志信息
      * @param sysLoginLogDTO 日志信息

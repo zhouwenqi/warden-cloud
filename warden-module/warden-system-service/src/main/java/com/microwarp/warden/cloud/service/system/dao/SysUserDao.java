@@ -31,6 +31,12 @@ public interface SysUserDao extends BaseDao<SysUser> {
     List<SysUser> findAll();
 
     /**
+     * 刷新用户密钥
+     * @param userId 用户id
+     * @return 新的密钥
+     */
+    String refreshSecretKey(Long userId);
+    /**
      * 清除用户岗位id
      * @param id 岗位id
      */

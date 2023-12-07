@@ -1,6 +1,8 @@
 package com.microwarp.warden.cloud.service.system.domain.vo;
 
 
+import com.microwarp.warden.cloud.common.core.enums.AgainVerifyTypeEnum;
+
 /**
  * dto - 配置
  * @author zhouwenqi
@@ -10,6 +12,8 @@ public class SysConfigVO {
     private Boolean enabledRegister;
     /** 允许一个帐号生成多个有效token */
     private Boolean allowManyToken;
+    /** 再次验证功能 */
+    private AgainVerifyTypeEnum againVerify;
 
     public Boolean getEnabledRegister() {
         return enabledRegister;
@@ -25,5 +29,13 @@ public class SysConfigVO {
 
     public void setAllowManyToken(Boolean allowManyToken) {
         this.allowManyToken = allowManyToken;
+    }
+
+    public AgainVerifyTypeEnum getAgainVerify() {
+        return againVerify;
+    }
+
+    public void setAgainVerify(AgainVerifyTypeEnum againVerify) {
+        this.againVerify = againVerify;
     }
 }

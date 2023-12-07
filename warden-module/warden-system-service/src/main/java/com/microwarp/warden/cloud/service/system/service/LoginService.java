@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -34,6 +33,8 @@ public class LoginService {
     private SysUserLockService sysUserLockService;
     @Autowired
     private SysLoginLogService sysLoginLogService;
+    @Autowired
+    private SysUserBlipService sysUserBlipService;
     @Autowired
     private WardenAdminConfig wardenAdminConfig;
     @Autowired
@@ -86,6 +87,24 @@ public class LoginService {
         sysUserLockService.add(userId,ip,DateUtils.addMinutes(new Date(), SecurityConstant.LOGIN_LOCK_TIME));
         String key = getLoginFailedKey(userId,ip);
         redisTemplate.delete(key);
+    }
+
+    /**
+     * 检查用户是否需要二次验证并标记
+     * @param userId 用户id
+     * @param ip ip地址
+     * @param always 永远验证
+     */
+    public void checkBlip(Long userId, String ip, boolean always){
+        if(!always) {
+            SysLoginLogDTO sysLoginLogDTO = sysLoginLogService.findLastByUserId(userId);
+            if (null != sysLoginLogDTO && !sysLoginLogDTO.getIp().equals(ip)) {
+                sysUserBlipService.add(userId, ip);
+            }
+        }
+        else{
+            sysUserBlipService.add(userId, ip);
+        }
     }
 
     /**

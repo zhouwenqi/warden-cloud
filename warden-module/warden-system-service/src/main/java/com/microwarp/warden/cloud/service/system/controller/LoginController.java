@@ -2,6 +2,7 @@ package com.microwarp.warden.cloud.service.system.controller;
 
 import com.microwarp.warden.cloud.common.core.constant.HttpConstant;
 import com.microwarp.warden.cloud.common.core.enums.ActionStatusEnum;
+import com.microwarp.warden.cloud.common.core.enums.AgainVerifyTypeEnum;
 import com.microwarp.warden.cloud.common.core.enums.AppTerminalEnum;
 import com.microwarp.warden.cloud.common.core.enums.PlatformTypeEnum;
 import com.microwarp.warden.cloud.common.core.exception.WardenAccountFailedException;
@@ -12,6 +13,7 @@ import com.microwarp.warden.cloud.common.security.service.CaptchaService;
 import com.microwarp.warden.cloud.common.security.service.RedisTokenService;
 import com.microwarp.warden.cloud.common.security.token.TokenUser;
 import com.microwarp.warden.cloud.common.security.util.WebUtil;
+import com.microwarp.warden.cloud.facade.system.domain.dto.SysConfigDTO;
 import com.microwarp.warden.cloud.facade.system.domain.dto.SysUserDetailsDTO;
 import com.microwarp.warden.cloud.service.system.config.WardenAdminConfig;
 import com.microwarp.warden.cloud.service.system.constant.SecurityConstant;
@@ -136,14 +138,19 @@ public class LoginController extends BaseController {
         resultModel.addData("token",token);
 
         // token写入缓存
-
-        if(!sysConfigService.findCurrent().getAllowManyToken()){
+        SysConfigDTO sysConfigDTO = sysConfigService.findCurrent();
+        if(!sysConfigDTO.getAllowManyToken()){
             tokenService.clearLoggedToken(tokenUser);
         }
         tokenService.addLoggedToken(tokenUser,token);
 
         // 清除登录失败计数
         loginService.success(sysUserDetailsDTO.getId(),ip);
+        // 是否开启二次验证
+        AgainVerifyTypeEnum againVerifyType = sysConfigDTO.getAgainVerify();
+        if(null != againVerifyType && !againVerifyType.equals(AgainVerifyTypeEnum.NONE)) {
+            loginService.checkBlip(sysUserDetailsDTO.getId(), ip, againVerifyType.equals(AgainVerifyTypeEnum.ALWAYS));
+        }
         // 写入日志
         loginService.asyncWriteLog(sysUserDetailsDTO,"登录成功", ActionStatusEnum.SUCCESS,ip, AppTerminalEnum.PC_WEB, PlatformTypeEnum.BACKSTAGE);
         return resultModel;

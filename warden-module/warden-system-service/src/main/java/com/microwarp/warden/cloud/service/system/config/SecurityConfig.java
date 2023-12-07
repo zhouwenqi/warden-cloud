@@ -3,6 +3,7 @@ package com.microwarp.warden.cloud.service.system.config;
 import com.microwarp.warden.cloud.common.core.constant.HttpConstant;
 import com.microwarp.warden.cloud.common.security.authenticator.WardenAccessDeninedHandler;
 import com.microwarp.warden.cloud.common.security.authenticator.WardenAuthenticationEntryPoint;
+import com.microwarp.warden.cloud.service.system.security.WardenAgainVerifyFilter;
 import com.microwarp.warden.cloud.service.system.security.WardenAuthenticationTokenFilter;
 import com.microwarp.warden.cloud.service.system.security.WardenAuthenticationUserFilter;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/logout").permitAll()
+                .antMatchers("/logout","/googleauth/**").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.logout().logoutUrl("/login");
         httpSecurity.headers().cacheControl();
@@ -44,7 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.exceptionHandling().authenticationEntryPoint(new WardenAuthenticationEntryPoint())
                 .accessDeniedHandler(new WardenAccessDeninedHandler()).and()
                 .addFilterBefore(new WardenAuthenticationUserFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new WardenAuthenticationTokenFilter(), WardenAuthenticationUserFilter.class);
+                .addFilterBefore(new WardenAuthenticationTokenFilter(), WardenAuthenticationUserFilter.class)
+                .addFilterAfter(new WardenAgainVerifyFilter(),WardenAuthenticationTokenFilter.class);
+
     }
 
     /**
