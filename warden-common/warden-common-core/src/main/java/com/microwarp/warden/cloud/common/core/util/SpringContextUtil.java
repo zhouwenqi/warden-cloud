@@ -3,7 +3,8 @@ package com.microwarp.warden.cloud.common.core.util;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 /**
- * Created by Administrator on 17/11/2023.
+ * util - SpringContext
+ * @author zhouwenqi
  */
 public class SpringContextUtil implements ApplicationContextAware {
 

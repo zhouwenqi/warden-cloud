@@ -31,6 +31,7 @@ public class SysMessageDaoImpl extends BaseDaoImpl<SysMessageMapper,SysMessage> 
         queryWrapper.eq("to_id", Long.parseLong(wardenUser.getUserId()));
         queryWrapper.eq("to_platform", ResultUtil.convertToPlatform(wardenUser.getUserType()));
         queryWrapper.eq("id",id);
+        queryWrapper.last("limit 1");
         SysMessage sysMessage = baseMapper.selectOne(queryWrapper);
         return null == sysMessage ? null : SysMessageMapstruct.Instance.sysMessageToSysMessageDTO(sysMessage);
     }

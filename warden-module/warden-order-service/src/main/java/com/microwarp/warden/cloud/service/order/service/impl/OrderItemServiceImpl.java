@@ -37,6 +37,7 @@ public class OrderItemServiceImpl extends BaseServiceImpl<OrderItem,OrderItemDao
         QueryWrapper<OrderItem> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("order_id",createOrderItemDTO.getOrderId());
         queryWrapper.eq("prd_id",createOrderItemDTO.getPrdId());
+        queryWrapper.last("limit 1");
         OrderItem orderItem = this.dao.getOne(queryWrapper);
         if(null != orderItem){
             orderItem.setQuantity(orderItem.getQuantity()+newItem.getQuantity());

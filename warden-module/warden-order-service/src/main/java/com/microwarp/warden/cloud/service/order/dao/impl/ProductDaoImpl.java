@@ -34,6 +34,7 @@ public class ProductDaoImpl extends BaseDaoImpl<ProductMapper,Product> implement
     public ProductDTO findBySn(String productSn){
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("prd_sn",productSn);
+        queryWrapper.last("limit 1");
         Product product = baseMapper.selectOne(queryWrapper);
         return null == product ? null : ProductMapstruct.Instance.productToProductDTO(product);
     }

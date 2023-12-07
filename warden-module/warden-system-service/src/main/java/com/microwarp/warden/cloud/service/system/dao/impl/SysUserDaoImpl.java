@@ -38,6 +38,7 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUserMapper,SysUser> implement
     public SysUserDTO findByUid(String uid){
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid",uid);
+        queryWrapper.last("limit 1");
         SysUser sysUser = baseMapper.selectOne(queryWrapper);
         return SysUserMapstruct.Instance.sysUserToSysUserDTO(sysUser);
     }

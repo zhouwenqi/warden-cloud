@@ -31,6 +31,7 @@ public class SysConfigServiceImpl extends BaseServiceImpl<SysConfig,SysConfigDao
     @Cacheable(value = CacheKeys.DATA_SYS_CONFIG, key="'system'", unless = "#result eq null")
     public SysConfigDTO findCurrent(){
         QueryWrapper<SysConfig> queryWrapper = new QueryWrapper<>();
+        queryWrapper.last("limit 1");
         SysConfig sysConfig = sysConfigDao.getOne(queryWrapper);
         if(null == sysConfig){
             sysConfig = new SysConfig();

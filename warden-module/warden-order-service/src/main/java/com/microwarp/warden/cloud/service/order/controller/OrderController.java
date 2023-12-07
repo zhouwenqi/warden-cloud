@@ -55,7 +55,7 @@ public class OrderController extends BaseController {
     /**
      * 创建订单信息
      * @param createOrderRequest 订单信息
-     * @return
+     * @return 订单信息
      */
     @PostMapping("order")
     @PreAuthorize("hasAuthority('create:order')")
@@ -75,7 +75,7 @@ public class OrderController extends BaseController {
     /**
      * 修改订单信息
      * @param updateOrderRequest 修改参数
-     * @return
+     * @return 订单信息
      */
     @PatchMapping("order")
     public ResultModel update(@RequestBody @Validated UpdateOrderRequest updateOrderRequest){

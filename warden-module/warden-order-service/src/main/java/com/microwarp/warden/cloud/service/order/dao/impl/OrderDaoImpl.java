@@ -34,6 +34,7 @@ public class OrderDaoImpl extends BaseDaoImpl<OrderMapper,Order> implements Orde
     public OrderDTO findBySn(String orderSn){
          QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
          queryWrapper.eq("order_sn",orderSn);
+         queryWrapper.last("limit 1");
          Order order = baseMapper.selectOne(queryWrapper);
          return null == order ? null : OrderMapstruct.Instance.orderToOrderDTO(order);
     }

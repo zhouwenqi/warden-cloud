@@ -48,6 +48,7 @@ public class UserDaoImpl extends BaseDaoImpl<UserMapper,User> implements UserDao
     public UserDTO findByUid(String uid){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid",uid);
+        queryWrapper.last("limit 1");
         User user = baseMapper.selectOne(queryWrapper);
         if(null == user){
             return null;

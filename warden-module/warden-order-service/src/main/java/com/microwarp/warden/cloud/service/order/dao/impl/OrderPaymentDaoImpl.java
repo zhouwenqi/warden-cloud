@@ -38,6 +38,7 @@ public class OrderPaymentDaoImpl extends BaseDaoImpl<OrderPaymentMapper,OrderPay
     public OrderPaymentDTO findBySn(String paymentSn){
         QueryWrapper<OrderPayment> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("payment_sn", paymentSn);
+        queryWrapper.last("limit 1");
         OrderPayment orderPayment = baseMapper.selectOne(queryWrapper);
         return null == orderPayment ? null : OrderPaymentMapstruct.Instance.orderPaymentToOrderPaymentDTO(orderPayment);
     }
