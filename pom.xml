@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.microwarp</groupId>
+    <groupId>com.microwarp.warden</groupId>
     <artifactId>warden-cloud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -164,47 +164,47 @@
             </dependency>
             <!-- warden cloud -->
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-common-core</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-common-redis</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-common-database</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-common-security</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-common-config</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-common-forestage</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-system-api</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-user-api</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microwarp</groupId>
+                <groupId>com.microwarp.warden</groupId>
                 <artifactId>warden-order-api</artifactId>
                 <version>${warden-cloud.version}</version>
             </dependency>

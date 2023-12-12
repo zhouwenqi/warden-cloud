@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>warden-module</artifactId>
-        <groupId>com.microwarp</groupId>
+        <groupId>com.microwarp.warden</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -29,22 +29,22 @@
 
         <!-- Warden common : forestage -->
         <dependency>
-            <groupId>com.microwarp</groupId>
+            <groupId>com.microwarp.warden</groupId>
             <artifactId>warden-common-forestage</artifactId>
         </dependency>
         <!-- Warden common : database -->
         <dependency>
-            <groupId>com.microwarp</groupId>
+            <groupId>com.microwarp.warden</groupId>
             <artifactId>warden-common-database</artifactId>
         </dependency>
         <!-- Warden common : config -->
         <dependency>
-            <groupId>com.microwarp</groupId>
+            <groupId>com.microwarp.warden</groupId>
             <artifactId>warden-common-config</artifactId>
         </dependency>
         <!-- Warden api : order -->
         <dependency>
-            <groupId>com.microwarp</groupId>
+            <groupId>com.microwarp.warden</groupId>
             <artifactId>warden-order-api</artifactId>
         </dependency>
     </dependencies>

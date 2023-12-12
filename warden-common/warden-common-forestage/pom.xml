@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>warden-common</artifactId>
-        <groupId>com.microwarp</groupId>
+        <groupId>com.microwarp.warden</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -14,12 +14,12 @@
     <dependencies>
         <!-- Warden common : security -->
         <dependency>
-            <groupId>com.microwarp</groupId>
+            <groupId>com.microwarp.warden</groupId>
             <artifactId>warden-common-security</artifactId>
         </dependency>
         <!-- Warden facade : user-api -->
         <dependency>
-            <groupId>com.microwarp</groupId>
+            <groupId>com.microwarp.warden</groupId>
             <artifactId>warden-user-api</artifactId>
         </dependency>
     </dependencies>
