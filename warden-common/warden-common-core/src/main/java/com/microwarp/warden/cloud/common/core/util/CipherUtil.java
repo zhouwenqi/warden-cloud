@@ -40,7 +40,9 @@ public class CipherUtil {
     public static final String RSAECBOAEPWithSHA_256AndMGF1Padding    = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
 
     static {
-        Security.addProvider(new BouncyCastleProvider());
+        if(null == Security.getProvider(BouncyCastleProvider.PROVIDER_NAME)) {
+            Security.addProvider(new BouncyCastleProvider());
+        }
     }
 
     public static byte[] generateKey(String specType){
@@ -86,7 +88,7 @@ public class CipherUtil {
 
 
     public static byte[] encrypt(byte[] keyBytes, byte[] ivBytes,byte[] data, String cipherStr, String specType) throws Exception {
-        Cipher cipher = Cipher.getInstance(cipherStr);
+        Cipher cipher = Cipher.getInstance(cipherStr,BouncyCastleProvider.PROVIDER_NAME);
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes,specType);
         if(null != ivBytes){
             IvParameterSpec ivParameterSpec = new IvParameterSpec(ivBytes);
@@ -98,7 +100,7 @@ public class CipherUtil {
     }
 
     public static byte[] decrpyt(byte[] keyBytes,byte[] ivBytes,byte[] data,String cipherStr, String specType) throws Exception{
-        Cipher cipher = Cipher.getInstance(cipherStr);
+        Cipher cipher = Cipher.getInstance(cipherStr,BouncyCastleProvider.PROVIDER_NAME);
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, specType);
         if(null != ivBytes){
             IvParameterSpec ivParameterSpec = new IvParameterSpec(ivBytes);
