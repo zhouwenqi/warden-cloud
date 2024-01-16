@@ -8,7 +8,7 @@
         SELECT <include refid="base_column"></include>
         FROM wd_sys_permission
         WHERE id IN (
-            SELECT wd_sys_role_permission WHERE role_id IN (SELECT role_id FROM wd_sys_role_user WHERE user_id = #{userId})
+            SELECT  permission_id FROM wd_sys_role_permission WHERE role_id IN (SELECT role_id FROM wd_sys_role_user WHERE user_id = #{userId})
         )  ORDER BY `orders`
     </select>
     <select id="findByRoleIds" resultType="com.microwarp.warden.cloud.service.system.domain.entity.SysPermission">

@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.logout().logoutUrl("/login");
         httpSecurity.headers().cacheControl();
         httpSecurity.headers().cacheControl();
-        httpSecurity.exceptionHandling().authenticationEntryPoint(new WardenAuthenticationEntryPoint())
+        httpSecurity.exceptionHandling()
+                .authenticationEntryPoint(new WardenAuthenticationEntryPoint())
                 .accessDeniedHandler(new WardenAccessDeninedHandler()).and()
                 .addFilterBefore(new WardenAuthenticationUserFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new WardenAuthenticationTokenFilter(), WardenAuthenticationUserFilter.class)
